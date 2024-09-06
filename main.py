@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from src.solver import init_plot, solver
+from src.solver import solver
 
 
 def main():
@@ -17,15 +17,12 @@ def main():
         [0, 0, 0, 0, 8, 0, 0, 7, 9],
     ]
 
-    fig, ax = init_plot()
-    if solver(grid, ax, fig):
+    if solver(grid):
         print("Sudoku solved:")
-        print(np.matrix(grid))
+        for row in grid:
+            print(" ".join(str(cell) if cell != 0 else "." for cell in row))
     else:
         print("No solution exists.")
-
-    plt.ioff()  # Turn off interactive mode
-    plt.show()  # Show the final plot
 
 
 if __name__ == "__main__":
