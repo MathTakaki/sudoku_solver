@@ -1,26 +1,27 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from src.solver import solver
+from src.solver import solver, solver_once
 
 
 def main():
-    grid = [
-        [5, 3, 0, 0, 7, 0, 0, 0, 0],
-        [6, 0, 0, 1, 9, 5, 0, 0, 0],
-        [0, 9, 8, 0, 0, 0, 0, 6, 0],
-        [8, 0, 0, 0, 6, 0, 0, 0, 3],
-        [4, 0, 0, 8, 0, 3, 0, 0, 1],
-        [7, 0, 0, 0, 2, 0, 0, 0, 6],
-        [0, 6, 0, 0, 0, 0, 2, 8, 0],
-        [0, 0, 0, 4, 1, 9, 0, 0, 5],
-        [0, 0, 0, 0, 8, 0, 0, 7, 9],
-    ]
+    grid = np.array(
+        [
+            [0, 0, 0, 0, 2, 0, 0, 0, 7],
+            [9, 0, 0, 6, 0, 0, 0, 0, 0],
+            [0, 4, 0, 0, 0, 9, 1, 0, 8],
+            [0, 0, 1, 0, 0, 0, 0, 0, 0],
+            [0, 8, 0, 1, 0, 0, 6, 0, 0],
+            [0, 0, 0, 0, 4, 0, 5, 3, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 1, 0, 3, 5, 0, 2, 0, 4],
+            [3, 7, 9, 0, 0, 2, 0, 0, 0],
+        ]
+    )
 
-    if solver(grid):
+    if solver_once(grid):
         print("Sudoku solved:")
-        for row in grid:
-            print(" ".join(str(cell) if cell != 0 else "." for cell in row))
+        print(np.matrix(grid))
     else:
         print("No solution exists.")
 
